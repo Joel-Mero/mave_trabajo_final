@@ -43,14 +43,20 @@ public class MainAuto {
 		listaAutos.add(auto3);
 		
 		Cliente cliente1 = new Cliente();
+		cliente1.setNombre("Cliente1");
+		cliente1.setApellido("Cliente1");
 		cliente1.setCedula("172934343");
 		cliente1.setAuto(auto1);
 		
 		Cliente cliente2 = new Cliente();
+		cliente2.setNombre("Cliente2");
+		cliente2.setApellido("Cliente2");
 		cliente2.setCedula("172934343");
 		cliente2.setAuto(auto2);
 		
 		Cliente cliente3 = new Cliente();
+		cliente3.setNombre("Cliente3");
+		cliente3.setApellido("Cliente3");
 		cliente3.setCedula("172934343");
 		cliente3.setAuto(auto2);
 		
