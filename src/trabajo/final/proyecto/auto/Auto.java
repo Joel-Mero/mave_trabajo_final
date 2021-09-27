@@ -47,8 +47,8 @@ public class Auto {
 	}
 	@Override
 	public String toString() {
-		return "Auto [placa= " + placa + ", modelo= " + modelo + ", marca= " + marca + ", año= " + anio + ", estado= "
-				+ estado + ", fechaEntrega= " + fechaEntrega + "]";
+		return "Auto: placa= " + placa + ", modelo= " + modelo + ", marca= " + marca + ", año= " + anio + ", estado= "
+				+ estado + ", fechaEntrega= " + fechaEntrega + "";
 	}
 	
 	
