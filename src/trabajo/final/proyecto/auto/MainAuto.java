@@ -1,5 +1,6 @@
 package proyecto.auto;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,15 +12,15 @@ public class MainAuto {
 
 		Scanner teclado = new Scanner(System.in);
 		Scanner teclado1 = new Scanner(System.in);
-		
+
 		Auto auto1 = new Auto();
 		auto1.setPlaca("PCT-1434");
 		auto1.setModelo("Prius");
 		auto1.setMarca("Toyota");
 		auto1.setAño("2015");
 		auto1.setEstado("Disponible");
-		auto1.setFechaEntrega("");
-		
+		auto1.setFechaEntrega("10/06/2021");
+
 		Auto auto2 = new Auto();
 		auto2.setPlaca("PRG-0423");
 		auto2.setModelo("Sportage");
@@ -27,7 +28,7 @@ public class MainAuto {
 		auto2.setAño("2017");
 		auto2.setEstado("Reservado");
 		auto2.setFechaEntrega("12/03/2021");
-		
+
 		Auto auto3 = new Auto();
 		auto3.setPlaca("PFQ-0445");
 		auto3.setModelo("Sportage");
@@ -35,14 +36,12 @@ public class MainAuto {
 		auto3.setAño("2019");
 		auto3.setEstado("Alquilado");
 		auto3.setFechaEntrega("12/05/2021");
-		
-		List<Auto> listaAutos = new ArrayList<Auto>(); 
+
+		List<Auto> listaAutos = new ArrayList<Auto>();
 		listaAutos.add(auto1);
 		listaAutos.add(auto2);
 		listaAutos.add(auto3);
-		
 
-		
 		int opcion;
 		do {
 			System.out.println("-----ES USTED-----");
@@ -61,19 +60,20 @@ public class MainAuto {
 					System.out.println("--Ingrese el modelo y/o marca del auto--");
 					String auto = teclado1.nextLine();
 					boolean comparacion = false;
-					
+
 					for (int i = 0; i < listaAutos.size(); i++) {
 						Auto alquilarAuto = listaAutos.get(i);
-						String autoExiste = alquilarAuto.getModelo();
-						String autoExiste1 = alquilarAuto.getMarca();
-						boolean comparacion1 = auto.equals(autoExiste);
-						boolean comparacion2 = auto.equals(autoExiste1);
-						
+						String modeloExiste = alquilarAuto.getModelo();
+						String marcaExiste = alquilarAuto.getMarca();
+						boolean comparacion1 = auto.equals(modeloExiste);
+						boolean comparacion2 = auto.equals(marcaExiste);
+
 						if (comparacion1 == true || comparacion2 == true) {
 							comparacion = true;
 							System.out.println(listaAutos.get(i));
-						}					}
-					
+						}
+					}
+
 				} else {
 					if (cliente.equals("b")) {
 						System.out.println("-Ingrese placa del Auto-");
@@ -81,8 +81,31 @@ public class MainAuto {
 						boolean comparacion = false;
 						System.out.println("-Ingrese número de su cédula-");
 						String cedula = teclado1.nextLine();
-						
-						
+
+						for (int i = 0; i < listaAutos.size(); i++) {
+							Auto auto = listaAutos.get(i);
+							placa = auto.getPlaca();
+							boolean comparacion1 = auto.getPlaca().contains(placa);
+
+							if (comparacion1 == true) {
+								if (auto.getEstado().equals("Disponible")) {
+									auto.setEstado("Reservado");
+								} else {
+									if (auto.getEstado().equals("Reservado") || auto.getEstado().equals("Alquilado")) {
+										System.out.println("Auto no disponible.");
+									}
+								}
+							}
+							if (auto.getFechaEntrega().equals("10/06/2021")) {
+								LocalDate fechaReserva = LocalDate.of(2021, 6, 10);
+								LocalDate fechaEntrega = fechaReserva.plusDays(2);
+								auto.setFechaEntrega("" + fechaEntrega);
+								System.out.println(listaAutos.get(i));
+								System.out.println("El auto ha sido correctamente reservado.");
+								System.out.println("Pasar a retirarlo.");
+							}
+							
+						}
 					}
 				}
 
@@ -125,6 +148,10 @@ public class MainAuto {
 								System.out.println("--Camioneta--");
 								System.out.println("-Peso que soporta-");
 								String pesoSoporta = teclado1.nextLine();
+
+								List<Auto> tipoAutos = new ArrayList<Auto>();
+								tipoAutos.add(auto3);
+
 							}
 						}
 
@@ -144,7 +171,7 @@ public class MainAuto {
 					}
 				}
 			}
-		}while (opcion != 3);
+		} while (opcion != 3);
 	}
 
 }
