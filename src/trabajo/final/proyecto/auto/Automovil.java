@@ -1,6 +1,6 @@
 package proyecto.auto;
 
-public class Automovil {
+public class Automovil extends Auto{
 
 	private String placa;
 	private String modelo;
